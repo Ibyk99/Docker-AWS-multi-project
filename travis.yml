@@ -1,0 +1,17 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t ikholwadia/react-test -f./client/dockerfile.dev ./client
+
+
+script:
+  - docker run -e CI=true ikholwadia/react-test npm test
+
+after_success:
+  - dockerbuild -t ikholwadia/multi-client ./client
+   - dockerbuild -t ikholwadia/multi-nginx ./nginx
+  - dockerbuild -t ikholwadia/multi-server ./server
+  - dockerbuild -t ikholwadia/multi-worker ./worker
+
