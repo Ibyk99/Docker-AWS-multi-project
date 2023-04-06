@@ -7,7 +7,7 @@ before_install:
 
 
 script:
-  - docker run -e CI=true ikholwadia/react-test npm test
+  - docker run -e CI=true ikholwadia/reacttest npm test
 
 after_success:
   - dockerbuild -t ikholwadia/multi-client ./client
