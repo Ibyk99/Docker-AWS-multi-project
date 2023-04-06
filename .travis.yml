@@ -15,3 +15,9 @@ after_success:
   - dockerbuild -t ikholwadia/multi-server ./server
   - dockerbuild -t ikholwadia/multi-worker ./worker
 
+  - echo "$docker_password" | docker login -u "$docker_id" --password-stdin
+  - docker push ikholwadia/multi-client
+  - docker push ikholwadia/multi-nginx
+  - docker push ikholwadia/multi-server
+  - docker push ikholwadia/multi-worker
+
